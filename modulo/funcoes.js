@@ -121,15 +121,15 @@ const getMenssagesTrocadasByNumber = function (profileNumber) {
 const getConversaUserContatoByUserAndContatoNumber = function (userNumber, contatoNumber) {
     let filtroUserNumber = userNumber
     let filtroContatoNumber = contatoNumber
-    let message = { status: true, statuscode: 200, development: 'Sidney Campos Aragão', perfil: '', nome: '', numero_de_celular: '', conversas: [] }
+    let message = { status: true, statuscode: 200, development: 'Sidney Campos Aragão', remetente: '', destinatário: '', numero_de_celular_destinatário: '', conversas: [] }
 
     dados.contatos['whats-users'].forEach(function (itemUser) {
         if (itemUser.number === filtroUserNumber) {
-            message.perfil = itemUser.account
+            message.remetente = itemUser.account
             itemUser.contacts.forEach(function (itemContatos) {
                 if (itemContatos.number === filtroContatoNumber) {
-                    message.nome = itemContatos.name
-                    message.numero_de_celular = itemContatos.number
+                    message.destinatário = itemContatos.name
+                    message.numero_de_celular_destinatário = itemContatos.number
                     itemContatos.messages.forEach(function (itemMessagens) {
                         let remetente = itemMessagens.sender
                         let conteudo = itemMessagens.content
@@ -153,15 +153,15 @@ const getFilterConversaUserContatoByUserAndContatoNumber = function (userNumber,
     let filtroUserNumber = userNumber
     let filtroContatoNumber = contatoNumber
     let filtroPalavraChave = palavraChave
-    let message = { status: true, statuscode: 200, development: 'Sidney Campos Aragão', perfil: '', nome: '', numero_de_celular: '', conversas_com_palavras_chaves: [] }
+    let message = { status: true, statuscode: 200, development: 'Sidney Campos Aragão', remetente: '', destinatário: '', numero_de_celular_destinatário: '', conversas_com_palavras_chaves: [] }
 
     dados.contatos['whats-users'].forEach(function (itemUser) {
         if (itemUser.number === filtroUserNumber) {
-            message.perfil = itemUser.account
+            message.remetente = itemUser.account
             itemUser.contacts.forEach(function (itemContatos) {
                 if (itemContatos.number === filtroContatoNumber) {
-                    message.nome = itemContatos.name
-                    message.numero_de_celular = itemContatos.number
+                    message.destinatário = itemContatos.name
+                    message.numero_de_celular_destinatário = itemContatos.number
                     itemContatos.messages.forEach(function (itemMessagens) {
                         if(itemMessagens.content.toLowerCase().includes(filtroPalavraChave.toLowerCase())){
                         let remetente = itemMessagens.sender
@@ -175,7 +175,7 @@ const getFilterConversaUserContatoByUserAndContatoNumber = function (userNumber,
             })
         }
     })
-    if(!(message.conversas_com_palavras_chaves.length === 0|| message.perfil === ''|| message.nome === ""|| message.numero_de_celular === "")){
+    if(!(message.conversas_com_palavras_chaves.length === 0|| message.remetente === ''|| message.destinatário === ""|| message.numero_de_celular_destinatário === "")){
         return message
     } else {
         return MESSAGE_ERROR
