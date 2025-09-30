@@ -118,7 +118,7 @@ const getMenssagesTrocadasByNumber = function (profileNumber) {
 
 }
 //Retorna dados como: nome, número de celular e as conversas
-const getConversaUserContatoByUseraAndContatoNumber = function (userNumber, contatoNumber) {
+const getConversaUserContatoByUserAndContatoNumber = function (userNumber, contatoNumber) {
     let filtroUserNumber = userNumber
     let filtroContatoNumber = contatoNumber
     let message = { status: true, statuscode: 200, development: 'Sidney Campos Aragão', perfil: '', nome: '', numero_de_celular: '', conversas: [] }
@@ -141,7 +141,7 @@ const getConversaUserContatoByUseraAndContatoNumber = function (userNumber, cont
             })
         }
     })
-    if(!(message.conversas.length === 0)|| !(message.perfil === "")|| !(message.nome === "")|| !(message.numero_de_celular === "")){
+    if(!(message.conversas.length === 0||message.perfil === ""|| message.nome === ""|| message.numero_de_celular === "")){
         return message
     } else {
         return MESSAGE_ERROR
@@ -149,7 +149,7 @@ const getConversaUserContatoByUseraAndContatoNumber = function (userNumber, cont
 
 }
 //Retorna dados como: nome, número de celular e as conversas
-const getFilterConversaUserContatoByUseraAndContatoNumber = function (userNumber, contatoNumber, palavraChave) {
+const getFilterConversaUserContatoByUserAndContatoNumber = function (userNumber, contatoNumber, palavraChave) {
     let filtroUserNumber = userNumber
     let filtroContatoNumber = contatoNumber
     let filtroPalavraChave = palavraChave
@@ -175,15 +175,24 @@ const getFilterConversaUserContatoByUseraAndContatoNumber = function (userNumber
             })
         }
     })
-    if(!(message.conversas_com_palavras_chaves.length === 0)|| !(message.perfil === "")|| !(message.nome === "")|| !(message.numero_de_celular === "")){
+    if(!(message.conversas_com_palavras_chaves.length === 0|| message.perfil === ''|| message.nome === ""|| message.numero_de_celular === "")){
         return message
     } else {
         return MESSAGE_ERROR
     }
 }
+
+module.exports = {
+    getAllContatos,
+    getContatosByNumber,
+    getDadosPessoaisConversasByNumber,
+    getMenssagesTrocadasByNumber,
+    getConversaUserContatoByUserAndContatoNumber,
+    getFilterConversaUserContatoByUserAndContatoNumber
+}
 // console.log(getAllContatos())
 // console.log(getContatosByNumber('11987876567'))
 // console.log(getDadosPessoaisConversasByNumber('11987876567'))
 // console.log(getMenssagesTrocadasByNumber('11987876567'))
-// console.log(getConversaUserContatoByUseraAndContatoNumber('11987876567', '26999999963'))
-// console.log(getFilterConversaUserContatoByUseraAndContatoNumber('11987876567', '26999999963', 'yet'))
+// console.log(getConversaUserContatoByUserAndContatoNumber('11987876567', '26999999963'))
+// console.log(getFilterConversaUserContatoByUserAndContatoNumber('11987876567', '26999999963', 'yet'))
